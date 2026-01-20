@@ -1,43 +1,78 @@
-<script>
-const correctPassword = "october10";
-
-function lockPage() {
-  document.getElementById("lockscreen").style.display = "flex";
-}
-
-function checkPass() {
-  const userPass = document.getElementById("pass").value;
-  if (userPass === correctPassword) {
-    document.getElementById("lockscreen").style.display = "none";
-    sessionStorage.setItem("unlocked", "true");
-  } else {
-    document.getElementById("error").innerText = "Wrong password 🤍";
-  }
-}
-
-// 🔁 esto vuelve a bloquear si se cambia de pestaña
-document.addEventListener("visibilitychange", () => {
-  if (document.visibilityState === "visible") {
-    if (sessionStorage.getItem("unlocked") !== "true") {
-      lockPage();
-    }
-  }
-});
-
-// primera carga
-window.onload = () => {
-  if (sessionStorage.getItem("unlocked") !== "true") {
-    lockPage();
-  } else {
-    document.getElementById("lockscreen").style.display = "none";
-  }
-};
-</script>
 
 
 <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title> For Ben </title>
+</head>
+	<body>
+<div id="lockscreen">
+  <div class="lockbox">
+    <h2>This letter is only for you 🤍</h2>
+    <input type="password" id="pass" placeholder="Enter password">
+    <button onclick="checkPass()">Open</button>
+    <p id="error"></p>
+  </div>
+</div>
 
-<div class="scarletangel"></div>
+<script>
+const CORRECT = "october10";
+
+function checkPass(){
+let p = document.getElementById("pass").value;
+if(p === CORRECT){
+document.getElementById("site-content").style.display = "block";
+document.getElementById("lockscreen").style.display = "none";
+} else {
+document.getElementById("error").innerText = "Wrong password 🤍";
+}
+}
+</script>
+
+<style>
+#site-content{display:none;}
+
+#lockscreen{
+position:fixed;
+top:0; left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.lockbox{
+color:white;
+text-align:center;
+font-family:monospace;
+}
+
+.lockbox input{
+padding:10px;
+background:#111;
+border:1px solid white;
+color:white;
+}
+
+.lockbox button{
+margin-top:10px;
+padding:10px 20px;
+border:none;
+background:white;
+cursor:pointer;
+}
+</style>
+<div id="site-content">
+
+
+
+
+		
+	<div class="scarletangel"></div>
 <div class="mayura2"></div>
 <div class="heartfolder1"></div>
 <div class="heartfolder2"></div>
@@ -571,9 +606,10 @@ box-shadow:0 0 8px #ff6fa5;
 background: linear-gradient(90deg,#ff9ccf,#ff5fa2);
 }
 </style>
-
+</div>
 </body>
 
 </html>
+
 
 
